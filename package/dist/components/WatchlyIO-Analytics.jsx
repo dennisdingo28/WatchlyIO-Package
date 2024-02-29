@@ -46,8 +46,8 @@ var WatchlyIOAnalytics = function () {
             var res, jsonData;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("http://localhost:3000/api/workspace", {
-                            method: "GET",
+                    case 0: return [4 /*yield*/, fetch("http://localhost:3000/api/workspace?apiKey=".concat(process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY), {
+                            method: "PATCH",
                             body: JSON.stringify({ path: path }),
                         })];
                     case 1:
@@ -61,8 +61,8 @@ var WatchlyIOAnalytics = function () {
         }); }
     }), trackRoute = _a.mutate, isPending = _a.isPending;
     (0, react_1.useEffect)(function () {
-        trackRoute("/");
-    }, []);
+        trackRoute(window.location.pathname);
+    }, [window.location.pathname]);
     return (<div>
             analytics
         </div>);

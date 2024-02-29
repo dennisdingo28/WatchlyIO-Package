@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { WatchlyIO } from "@/package/components/WatchlyIO";
+import { WatchlyIO } from "@/package/dist/components/WatchlyIO";
 
 const inter = Inter({ subsets: ["latin"] });
 
