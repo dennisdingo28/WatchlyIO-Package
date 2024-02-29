@@ -40,15 +40,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WatchlyIOAnalytics = void 0;
 var react_query_1 = require("@tanstack/react-query");
 var react_1 = require("react");
+var __1 = require("..");
 var WatchlyIOAnalytics = function () {
-    var _a = (0, react_query_1.useMutation)({
-        mutationFn: function (path) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a;
+    var _b = (0, react_query_1.useMutation)({
+        mutationFn: function (route) { return __awaiter(void 0, void 0, void 0, function () {
             var res, jsonData;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, fetch("http://localhost:3000/api/workspace?apiKey=".concat(process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY), {
                             method: "PATCH",
-                            body: JSON.stringify({ path: path }),
+                            body: JSON.stringify(route),
                         })];
                     case 1:
                         res = _a.sent();
@@ -59,12 +61,12 @@ var WatchlyIOAnalytics = function () {
                 }
             });
         }); }
-    }), trackRoute = _a.mutate, isPending = _a.isPending;
+    }), trackRoute = _b.mutate, isPending = _b.isPending;
     (0, react_1.useEffect)(function () {
-        trackRoute(window.location.pathname);
+        trackRoute({ path: window.location.pathname, country: (0, __1.getCountry)() });
     }, [window.location.pathname]);
     return (<div>
-            analytics
+            COuntry: {(_a = (0, __1.getCountry)()) === null || _a === void 0 ? void 0 : _a.countryCode}
         </div>);
 };
 exports.WatchlyIOAnalytics = WatchlyIOAnalytics;

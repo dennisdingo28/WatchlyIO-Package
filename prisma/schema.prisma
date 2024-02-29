@@ -66,5 +66,16 @@ model Workspace {
   createdAt DateTime @default(now())
   apiKey    String   @unique
   userId    String
+  Route     Route[]
   User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Route {
+  pathname    String
+  visited     Int       @default(1)
+  countryCode String
+  workspaceId String
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
+  @@id([pathname, workspaceId])
 }
