@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getState = exports.getCountry = void 0;
+exports.generateWatchlyIOUserIdentifier = exports.getState = exports.getCountry = exports.PREFIX = void 0;
+exports.PREFIX = "watchlyIO-";
 function getCountry() {
     var countries = {
         AD: "Andorra",
@@ -2861,7 +2862,9 @@ function getCountry() {
     if (timezone === "" || !timezone) {
         return null;
     }
+    //@ts-ignore
     var _country = timezones[timezone].c[0];
+    //@ts-ignore
     var country = countries[_country];
     return { countryName: country, countryCode: _country };
 }
@@ -2875,3 +2878,14 @@ function getState() {
     return state;
 }
 exports.getState = getState;
+function generateWatchlyIOUserIdentifier() {
+    var uniqueID = crypto.randomUUID();
+    var formattedID = uniqueID.replace(/-/g, '');
+    var watchlyIOUserIdentifier = "watchlyIOuser-".concat(formattedID);
+    if (window.localStorage) {
+        localStorage.setItem("".concat(exports.PREFIX, "UserIdentifier"), watchlyIOUserIdentifier);
+        return watchlyIOUserIdentifier;
+    }
+    return null;
+}
+exports.generateWatchlyIOUserIdentifier = generateWatchlyIOUserIdentifier;

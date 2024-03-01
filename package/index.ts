@@ -1,3 +1,5 @@
+export const PREFIX = "watchlyIO-";
+
 export function getCountry() {
 	var countries = {
 		AD: "Andorra",
@@ -2860,8 +2862,9 @@ export function getCountry() {
 	if (timezone === "" || !timezone) {
 		return null;
 	}
-
+	//@ts-ignore
 	const _country = timezones[timezone].c[0];
+		//@ts-ignore
 	const country = countries[_country];
 	return {countryName: country, countryCode: _country};
 }
@@ -2877,4 +2880,19 @@ export function getState(){
 	
 	return state
 	
+}
+
+export function generateWatchlyIOUserIdentifier() {
+	const uniqueID = crypto.randomUUID();
+	const formattedID = uniqueID.replace(/-/g, '');
+	
+
+	const watchlyIOUserIdentifier = `watchlyIOuser-${formattedID}`;
+
+	if(window.localStorage){
+		localStorage.setItem(`${PREFIX}UserIdentifier`, watchlyIOUserIdentifier);
+
+		return watchlyIOUserIdentifier;
+	}
+	return null; 
 }
