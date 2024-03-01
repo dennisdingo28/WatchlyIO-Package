@@ -17,7 +17,7 @@ export const WatchlyIOSocket = () =>{
             const watchlyIOUserIdentifier=generateWatchlyIOUserIdentifier();
             
             if(!socket){
-                const newSocket = io("http://localhost:3002",{query:{id: watchlyIOUserIdentifier}});
+                const newSocket = io("http://localhost:3002",{query:{id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY}});
                 setSocket(newSocket);
             }
         }else{
