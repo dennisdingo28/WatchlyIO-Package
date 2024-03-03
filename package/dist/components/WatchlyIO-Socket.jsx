@@ -13,13 +13,13 @@ var WatchlyIOSocket = function () {
         if (!alreadyExists) {
             var watchlyIOUserIdentifier = (0, __1.generateWatchlyIOUserIdentifier)();
             if (!socket) {
-                var newSocket = (0, socket_io_client_1.io)("http://localhost:3002", { query: { id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY } });
+                var newSocket = (0, socket_io_client_1.io)("http://localhost:3002/workspaceUser", { query: { id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY } });
                 setSocket(newSocket);
             }
         }
         else {
             if (!socket) {
-                var newSocket = (0, socket_io_client_1.io)("http://localhost:3002", { query: { id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY } });
+                var newSocket = (0, socket_io_client_1.io)("http://localhost:3002/workspaceUser", { query: { id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY } });
                 setSocket(newSocket);
             }
         }

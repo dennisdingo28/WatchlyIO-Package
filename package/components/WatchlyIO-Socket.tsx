@@ -17,12 +17,12 @@ export const WatchlyIOSocket = () =>{
             const watchlyIOUserIdentifier=generateWatchlyIOUserIdentifier();
             
             if(!socket){
-                const newSocket = io("http://localhost:3002",{query:{id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY}});
+                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY}});
                 setSocket(newSocket);
             }
         }else{
             if(!socket){
-                const newSocket = io("http://localhost:3002",{query:{id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY}});
+                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY}});
                 setSocket(newSocket);
             }
         }
