@@ -3,7 +3,7 @@
 import { io } from "socket.io-client";
 import { useSocket } from "../useSocket";
 import { useEffect } from "react";
-import { PREFIX, generateWatchlyIOUserIdentifier } from "..";
+import { PREFIX, generateWatchlyIOUserIdentifier, getCountry } from "..";
 
 export const WatchlyIOSocket = () =>{
     
@@ -13,16 +13,17 @@ export const WatchlyIOSocket = () =>{
 
         const alreadyExists = localStorage.getItem(`${PREFIX}UserIdentifier`) || "";
         
+        const country = getCountry();
         if(!alreadyExists){
             const watchlyIOUserIdentifier=generateWatchlyIOUserIdentifier();
             
             if(!socket){
-                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY}});
+                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country!.countryName, countryCode: country!.countryCode}});
                 setSocket(newSocket);
             }
         }else{
             if(!socket){
-                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY}});
+                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country!.countryName, countryCode: country!.countryCode}});
                 setSocket(newSocket);
             }
         }
