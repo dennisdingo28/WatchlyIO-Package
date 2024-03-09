@@ -8,6 +8,7 @@ var react_1 = require("react");
 var __1 = require("..");
 var useUserIdentifier_1 = require("../useUserIdentifier");
 var WatchlyIOSocket = function () {
+    //
     var _a = (0, useSocket_1.useSocket)(function (state) { return state; }), socket = _a.socket, setSocket = _a.setSocket;
     var setUserIdentifier = (0, useUserIdentifier_1.useUserIdentifier)(function (state) { return state; }).setUserIdentifier;
     (0, react_1.useEffect)(function () {
