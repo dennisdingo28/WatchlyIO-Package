@@ -41,9 +41,12 @@ exports.WatchlyIOAnalytics = void 0;
 var react_query_1 = require("@tanstack/react-query");
 var react_1 = require("react");
 var __1 = require("..");
+var useSocket_1 = require("../useSocket");
 var WatchlyIOAnalytics = function () {
     var _a;
-    var _b = (0, react_query_1.useMutation)({
+    var _b = (0, useSocket_1.useSocket)(function (state) { return state; }), socket = _b.socket, setSocket = _b.setSocket;
+    var _c = (0, react_1.useState)(window.location.pathname), currentRoute = _c[0], setCurrentRoute = _c[1];
+    var _d = (0, react_query_1.useMutation)({
         mutationFn: function (route) { return __awaiter(void 0, void 0, void 0, function () {
             var res, jsonData;
             return __generator(this, function (_a) {
@@ -61,10 +64,18 @@ var WatchlyIOAnalytics = function () {
                 }
             });
         }); }
-    }), trackRoute = _b.mutate, isPending = _b.isPending;
+    }), trackRoute = _d.mutate, isPending = _d.isPending;
     (0, react_1.useEffect)(function () {
-        trackRoute({ path: window.location.pathname, country: (0, __1.getCountry)() });
-    }, [window.location.pathname]);
+        setCurrentRoute(window.location.pathname);
+    }, [window, window.location, window.location.pathname, window.location.href]);
+    (0, react_1.useEffect)(function () {
+        trackRoute({ path: currentRoute, country: (0, __1.getCountry)() });
+    }, [currentRoute]);
+    (0, react_1.useEffect)(function () {
+        if (!socket)
+            return;
+        socket.emit("current-route", { route: currentRoute });
+    }, [currentRoute, socket, setSocket]);
     return (<div>
             COuntry: {(_a = (0, __1.getCountry)()) === null || _a === void 0 ? void 0 : _a.countryCode}
         </div>);

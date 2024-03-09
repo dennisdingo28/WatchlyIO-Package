@@ -2,15 +2,15 @@
 
 import { WatchlyIOProvider } from "./WatchlyIO-Provider";
 import { WatchlyIOAnalytics } from "./WatchlyIO-Analytics";
-import { WatchlyIOSocket } from "./WatchlyIO-Socket";
 import { WatchlyIOUserIdentifier } from "./WatchlyIO-UserIdentifier";
+import { WatchlyIOSocket } from "./WatchlyIO-Socket";
 
 export const WatchlyIO = () => {
   return (
     <WatchlyIOProvider>
+      <WatchlyIOSocket/>
       <WatchlyIOAnalytics/>
       <WatchlyIOUserIdentifier/>
-      <WatchlyIOSocket/>
     </WatchlyIOProvider>
   );
 };
