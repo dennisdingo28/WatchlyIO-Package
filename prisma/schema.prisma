@@ -65,7 +65,7 @@ model Workspace {
   name          String
   createdAt     DateTime        @default(now())
   apiKey        String          @unique
-  roomId        String
+  roomId        String          @unique
   userId        String
   Route         Route[]
   User          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -75,8 +75,6 @@ model Workspace {
 model Route {
   pathname    String
   visited     Int       @default(1)
-  country     String
-  countryCode String
   workspaceId String
   Workspace   Workspace @relation(fields: [workspaceId], references: [id])
 
@@ -86,9 +84,13 @@ model Route {
 model WorkspaceUser {
   id             String              @id
   joinedAt       DateTime            @default(now())
-  disconnectedAt DateTime            @default(now())
+  disconnectedAt DateTime?
   status         WorkspaceUserStatus @default(ONLINE)
+  country        String
+  countryCode    String
+  platform       String
   workspaceId    String
+  createdAt      DateTime            @default(now())
   Workspace      Workspace           @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 }
 
