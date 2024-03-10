@@ -33,5 +33,13 @@ export const WatchlyIOSocket = () =>{
 
     },[]);
 
+    useEffect(()=>{
+
+        if(!socket) return;
+
+        socket.emit("current-route",{route:window.location.pathname});
+    
+      },[window, window.location, window.location.pathname,socket, setSocket]);
+
     return null;
 }

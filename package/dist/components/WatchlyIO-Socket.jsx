@@ -28,6 +28,11 @@ var WatchlyIOSocket = function () {
             }
         }
     }, []);
+    (0, react_1.useEffect)(function () {
+        if (!socket)
+            return;
+        socket.emit("current-route", { route: window.location.pathname });
+    }, [window, window.location, window.location.pathname, socket, setSocket]);
     return null;
 };
 exports.WatchlyIOSocket = WatchlyIOSocket;

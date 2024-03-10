@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { WatchlyIO } from "@/package/dist/components/WatchlyIO";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,8 @@ export default function RootLayout({
         <body className={inter.className}>
           {children}
           <WatchlyIO/>
+          <Link href={"/test"}>test paghe
+          </Link>
         </body>
     </html>
   );

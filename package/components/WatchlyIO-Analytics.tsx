@@ -4,10 +4,11 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { getCountry } from "..";
 import { useSocket } from "../useSocket";
+import { usePathname } from "next/navigation";
 
 export const WatchlyIOAnalytics = () =>{
     const {socket, setSocket} = useSocket(state=>state);
-    const [currentRoute, setCurrentRoute] = useState(window.location.pathname);
+    const path = usePathname();
 
     const {mutate: trackRoute, isPending} = useMutation({
         mutationFn: async(route: {path: string, country: {countryName: string, countryCode: string}}) =>{
@@ -21,22 +22,20 @@ export const WatchlyIOAnalytics = () =>{
         }
     });
 
-    useEffect(()=>{
-        setCurrentRoute(window.location.pathname)
-    }, [window, window.location, window.location.pathname, window.location.href]);
+
 
   useEffect(() => {
-    trackRoute({path:currentRoute, country:getCountry()!});
-  }, [currentRoute]);
+    trackRoute({path:path, country:getCountry()!});
+
+  }, [path]);
   
 
   useEffect(()=>{
-    
     if(!socket) return;
 
-    socket.emit("current-route",{route:currentRoute});
+    socket?.emit("current-route",{route:path});
 
-  },[currentRoute, socket, setSocket]);
+  },[path, socket, setSocket]);
 
     return (
         <div>
