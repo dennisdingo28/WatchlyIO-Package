@@ -33,7 +33,7 @@ export const WatchlyIOAnalytics = () =>{
   useEffect(()=>{
     if(!socket) return;
 
-    socket?.emit("current-route",{route:path});
+    socket.emit("current-route",{route:path});
 
   },[path, socket, setSocket]);
 

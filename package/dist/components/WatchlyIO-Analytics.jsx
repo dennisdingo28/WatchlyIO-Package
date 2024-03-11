@@ -72,7 +72,7 @@ var WatchlyIOAnalytics = function () {
     (0, react_1.useEffect)(function () {
         if (!socket)
             return;
-        socket === null || socket === void 0 ? void 0 : socket.emit("current-route", { route: path });
+        socket.emit("current-route", { route: path });
     }, [path, socket, setSocket]);
     return (<div>
             COuntry: {(_a = (0, __1.getCountry)()) === null || _a === void 0 ? void 0 : _a.countryCode}
