@@ -26,7 +26,6 @@ export const WatchlyIOAnalytics = () =>{
 
   useEffect(() => {
     trackRoute({path:path, country:getCountry()!});
-
   }, [path]);
   
 
