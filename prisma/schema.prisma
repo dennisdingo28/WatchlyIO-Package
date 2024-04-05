@@ -41,14 +41,14 @@ model PasswordResetToken {
 }
 
 model User {
-  id            String      @id
+  id            String     @id
   name          String?
-  email         String?     @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   password      String?
   Account       Account[]
-  Workspace     Workspace[]
+  Workspace     Workspace?
 }
 
 model VerificationToken {
@@ -61,22 +61,22 @@ model VerificationToken {
 }
 
 model Workspace {
-  id            String          @id
+  id            String         @id
   name          String
-  createdAt     DateTime        @default(now())
-  apiKey        String          @unique
-  roomId        String          @unique
-  userId        String
-  Route         Route[]
-  User          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  WorkspaceUser WorkspaceUser[]
+  createdAt     DateTime       @default(now())
+  apiKey        String         @unique
+  roomId        String         @unique
+  userId        String         @unique
+  Route         Route?
+  User          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  WorkspaceUser WorkspaceUser?
 }
 
 model Route {
   pathname    String
   visited     Int       @default(1)
-  workspaceId String
-  Workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspaceId String    @unique
+  Workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   @@id([pathname, workspaceId])
 }
@@ -89,7 +89,9 @@ model WorkspaceUser {
   country        String
   countryCode    String
   platform       String
-  workspaceId    String
+  browser        String
+  currentPath    String              @default("/")
+  workspaceId    String              @unique
   createdAt      DateTime            @default(now())
   Workspace      Workspace           @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 }
