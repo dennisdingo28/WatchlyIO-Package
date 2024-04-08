@@ -15,6 +15,7 @@ export const WatchlyIOSocket = () =>{
 
         const alreadyExists = localStorage.getItem(`${PREFIX}UserIdentifier`) || "";
         
+        //country
         const country = getCountry();
         if(!alreadyExists){
             const watchlyIOUserIdentifier=generateWatchlyIOUserIdentifier();
