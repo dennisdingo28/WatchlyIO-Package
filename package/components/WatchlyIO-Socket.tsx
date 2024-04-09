@@ -13,6 +13,7 @@ export const WatchlyIOSocket = () =>{
     
     useEffect(()=>{
 
+        //prefix
         const alreadyExists = localStorage.getItem(`${PREFIX}UserIdentifier`) || "";
         
         //country
