@@ -8,6 +8,7 @@ import { useUserIdentifier } from "../useUserIdentifier";
 
 export const WatchlyIOSocket = () =>{
     
+    //socket
     const {socket, setSocket} = useSocket(state=>state);
     const {setUserIdentifier} = useUserIdentifier(state=>state);
     
