@@ -8,13 +8,16 @@ import { useUserIdentifier } from "../useUserIdentifier";
 
 export const WatchlyIOSocket = () =>{
     
+    //socket
     const {socket, setSocket} = useSocket(state=>state);
     const {setUserIdentifier} = useUserIdentifier(state=>state);
     
     useEffect(()=>{
 
+        //prefix
         const alreadyExists = localStorage.getItem(`${PREFIX}UserIdentifier`) || "";
         
+        //country
         const country = getCountry();
         if(!alreadyExists){
             const watchlyIOUserIdentifier=generateWatchlyIOUserIdentifier();
