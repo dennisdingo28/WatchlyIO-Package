@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateWatchlyIOUserIdentifier = exports.getState = exports.getCountry = exports.PREFIX = void 0;
+exports.WatchlyIO = exports.generateWatchlyIOUserIdentifier = exports.getState = exports.getCountry = exports.PREFIX = void 0;
+var WatchlyIO_1 = require("./components/WatchlyIO");
+Object.defineProperty(exports, "WatchlyIO", { enumerable: true, get: function () { return WatchlyIO_1.WatchlyIO; } });
 exports.PREFIX = "watchlyIO-";
 function getCountry() {
     var countries = {

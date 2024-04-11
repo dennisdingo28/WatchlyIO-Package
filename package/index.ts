@@ -1,3 +1,4 @@
+import { WatchlyIO } from "./components/WatchlyIO";
 export const PREFIX = "watchlyIO-";
 
 export function getCountry() {
@@ -2895,4 +2896,8 @@ export function generateWatchlyIOUserIdentifier() {
 		return watchlyIOUserIdentifier;
 	}
 	return null; 
+}
+
+export {
+	WatchlyIO
 }

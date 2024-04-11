@@ -17,13 +17,13 @@ var WatchlyIOSocket = function () {
             var watchlyIOUserIdentifier = (0, __1.generateWatchlyIOUserIdentifier)();
             setUserIdentifier(watchlyIOUserIdentifier);
             if (!socket) {
-                var newSocket = (0, socket_io_client_1.io)("http://localhost:3002/workspaceUser", { query: { id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country.countryName, countryCode: country.countryCode } });
+                var newSocket = (0, socket_io_client_1.io)("https://watchlyio-server.onrender.com/workspaceUser", { query: { id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country.countryName, countryCode: country.countryCode } });
                 setSocket(newSocket);
             }
         }
         else {
             if (!socket) {
-                var newSocket = (0, socket_io_client_1.io)("http://localhost:3002/workspaceUser", { query: { id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country.countryName, countryCode: country.countryCode } });
+                var newSocket = (0, socket_io_client_1.io)("https://watchlyio-server.onrender.com/workspaceUser", { query: { id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country.countryName, countryCode: country.countryCode } });
                 setSocket(newSocket);
             }
         }

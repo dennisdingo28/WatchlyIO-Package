@@ -21,12 +21,12 @@ export const WatchlyIOSocket = () =>{
             setUserIdentifier(watchlyIOUserIdentifier);
             
             if(!socket){
-                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country!.countryName, countryCode: country!.countryCode}});
+                const newSocket = io("https://watchlyio-server.onrender.com/workspaceUser",{query:{id: watchlyIOUserIdentifier, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country!.countryName, countryCode: country!.countryCode}});
                 setSocket(newSocket);
             }
         }else{
             if(!socket){
-                const newSocket = io("http://localhost:3002/workspaceUser",{query:{id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country!.countryName, countryCode: country!.countryCode}});
+                const newSocket = io("https://watchlyio-server.onrender.com/workspaceUser",{query:{id: alreadyExists, apiKey: process.env.NEXT_PUBLIC_WATCHLY_IO_API_KEY, country: country!.countryName, countryCode: country!.countryCode}});
                 setSocket(newSocket);
             }
         }
