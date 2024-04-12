@@ -1,8 +1,8 @@
 {
-  "name": "watchly-io",
+  "name": "watchly-io2",
   "version": "1.0.0",
   "description": "WatchlyIO analytics component",
-  "main": "index.js",
+  "main": "/dist/index.js",
   "files": ["/dist"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
   "keywords": [
     "watchly-analytics"
   ],
-  "author": "",
+  "author": "Watchly",
   "license": "ISC",
   "dependencies": {
     "@tanstack/react-query": "^5.24.1",
